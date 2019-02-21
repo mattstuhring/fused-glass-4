@@ -1,0 +1,29 @@
+div.thumbnail {
+
+  img.img-padd {
+    padding-top: 10px;
+  }
+
+  .btn-wrap {
+    margin-bottom: 5px;
+  }
+
+  .caption {
+    h4, p {
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+  }
+
+  a {
+    span.glyphicon.glyphicon-pencil {
+      color: white;
+    }
+  }
+
+  button.btn.btn-success {
+    margin-right: 5px;
+  }
+
+}

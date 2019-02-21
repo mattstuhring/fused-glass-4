@@ -1,0 +1,51 @@
+.product-update {
+
+  .alert-danger {
+    margin-top: 15px;
+    margin-bottom: 0px;
+  }
+
+  .pdz-valid {
+    div.filepicker {
+      border-color: green;
+    }
+  }
+
+  .pdz-invalid {
+    div.filepicker {
+      border-color: #a94442;
+    }
+
+    span.pdz-error {
+      position: relative;
+      top: 7px;
+      color: #a94442;
+    }
+  }
+
+  .sdz-valid {
+    div.filepicker {
+      border-color: green;
+    }
+  }
+
+  span.sdz-error {
+    position: relative;
+    top: 7px;
+    color: #a94442;
+  }
+
+  button.btn.btn-primary, button.btn.btn-danger {
+    width: 100%;
+    margin-top: 30px;
+  }
+
+  div.panel-body {
+    padding: 0px 30px 30px 30px;
+  }
+
+  div.delete-product {
+    padding-top: 15px;
+  }
+
+}
