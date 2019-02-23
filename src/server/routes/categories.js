@@ -5,7 +5,6 @@ const express = require('express');
 const router = express.Router();
 
 
-
 // GET ALL PRODUCTS IN CATEGORY
 router.get('/categories/:id', (req, res, next) => {
   knex('categories')

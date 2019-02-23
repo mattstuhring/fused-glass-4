@@ -6,7 +6,7 @@
   "scripts": {
     "start": "npm-run-all --parallel watch:server watch:client",
     "watch:client": "webpack --config webpack.dev.config.js --watch",
-    "watch:server": "nodemon --watch webpack.server.config.js --watch ./src/server ./src/server/main-server.js",
+    "watch:server": "nodemon --watch webpack.server.config.js --watch ./src/server ./src/server/server.js",
     "buildDev": "rm -rf dist && webpack --config webpack.server.config.js && webpack --config webpack.dev.config.js",
     "buildProd": "rm -rf dist && webpack --mode production --config webpack.server.config.js",
     "knex": "knex"

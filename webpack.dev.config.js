@@ -5,39 +5,42 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
   mode: 'development',
-  entry: './src/client/main-client.js',
+  entry: './src/client/App.jsx',
   output: {
     path: path.join(__dirname, 'dist'),
     publicPath: '/',
-    filename: 'client-bundle.js'
+    filename: 'app-bundle.js'
   },
   target: 'web',
   resolve: {
+    extensions: ['*', '.js', '.jsx'],
     alias: {
       applicationStyles:  path.resolve(__dirname, 'src/client/styles/App.scss'),
       About:              path.resolve(__dirname, 'src/client/components/About'),
       AuthService:        path.resolve(__dirname, 'src/client/components/services/AuthService'),
-      Cart:               path.resolve(__dirname, 'src/client/components/Cart'),
-      Categories:         path.resolve(__dirname, 'src/client/components/products/product/Categories'),
-      Collections:        path.resolve(__dirname, 'src/client/components/products/product/Collections'),
-      Contact:            path.resolve(__dirname, 'src/client/components/Contact'),
-      Gallery:            path.resolve(__dirname, 'src/client/components/Gallery'),
-      Header:             path.resolve(__dirname, 'src/client/components/Header'),
-      Home:               path.resolve(__dirname, 'src/client/components/Home'),
-      Login:              path.resolve(__dirname, 'src/client/components/Login'),
-      Main:               path.resolve(__dirname, 'src/client/components/Main'),
-      Navigation:         path.resolve(__dirname, 'src/client/components/Navigation'),
-      ProductAdd:         path.resolve(__dirname, 'src/client/components/products/ProductAdd'),
-      ProductDetails:     path.resolve(__dirname, 'src/client/components/products/ProductDetails'),
-      ProductUpdate:      path.resolve(__dirname, 'src/client/components/products/ProductUpdate'),
-      SideNav:            path.resolve(__dirname, 'src/client/components/SideNav')
+      Cart:               path.resolve(__dirname, 'src/client/components/Cart.jsx'),
+      Categories:         path.resolve(__dirname, 'src/client/components/products/product/Categories.jsx'),
+      Collections:        path.resolve(__dirname, 'src/client/components/products/product/Collections.jsx'),
+      Contact:            path.resolve(__dirname, 'src/client/components/Contact.jsx'),
+      Gallery:            path.resolve(__dirname, 'src/client/components/Gallery.jsx'),
+      Header:             path.resolve(__dirname, 'src/client/components/Header.jsx'),
+      Home:               path.resolve(__dirname, 'src/client/components/Home.jsx'),
+      Login:              path.resolve(__dirname, 'src/client/components/Login.jsx'),
+      Main:               path.resolve(__dirname, 'src/client/components/Main.jsx'),
+      Navigation:         path.resolve(__dirname, 'src/client/components/Navigation.jsx'),
+      Product:            path.resolve(__dirname, 'src/client/components/products/Product.jsx'),
+      Products:           path.resolve(__dirname, 'src/client/components/products/Products.jsx'),
+      ProductAdd:         path.resolve(__dirname, 'src/client/components/products/ProductAdd.jsx'),
+      ProductDetails:     path.resolve(__dirname, 'src/client/components/products/ProductDetails.jsx'),
+      ProductUpdate:      path.resolve(__dirname, 'src/client/components/products/ProductUpdate.jsx'),
+      SideNav:            path.resolve(__dirname, 'src/client/components/SideNav.jsx')
     }
   },
   module: {
     rules: [
       {
-        test: /\.m?js$/,
-        exclude: /(node_modules|bower_components)/,
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
           options: {
