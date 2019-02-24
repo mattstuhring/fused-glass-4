@@ -35,9 +35,11 @@ ReactDOM.render(
       <Route path="/productupdate/:id" component={ProductUpdate}/>
       <Route path="/cart(/:id)" component={Cart}/>
       <Route path="/login(/:action)" component={Login}/>
-      <Route path="/products/:id/:category" component={Products}/>
-      <Route path="/products/:id/:category" component={Categories}/>
-      <Route path="/collections/:category/:id/:collection" component={Collections}/>
+
+      <Route path="/products/:category/:categoryId(/:collection)(/:collectionId)" component={Products}/>
+
+      <Route path="/collections/:category/:id/:collection" component={Products}/>
+
       <Route path="/productdetails/:id" component={ProductDetails} />
     </Route>
   </Router>,

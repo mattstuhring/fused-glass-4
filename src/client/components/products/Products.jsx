@@ -3,27 +3,73 @@ import axios from 'axios';
 import { Button, Tooltip, OverlayTrigger } from 'react-bootstrap';
 import { Link } from 'react-router';
 import Header from 'Header';
+import Product from 'Product';
 import { Image } from 'cloudinary-react';
 import AuthService from 'AuthService';
 const cloudName = 'fusedglassbyceleste';
-
 
 export default class Products extends React.Component {
   constructor(props) {
     super(props);
 
+    this.Auth = new AuthService();
+
     this.state = {
+      auth: this.Auth.loggedIn(),
+      categoryId: null,
+      category: null,
+      collectionId: null,
+      collection: null,
       products: []
     };
 
-    this.Auth = new AuthService();
+    this.handlePath = this.handlePath.bind(this);
   }
 
   componentDidMount() {
-    axios.get(`/api/categories/${this.props.params.id}`)
+    console.log('cat: ', this.props.params.category);
+    console.log('catId: ', this.props.params.categoryId);
+    console.log('col: ', this.props.params.collection);
+    console.log('colId: ', this.props.params.collectionId);
+
+    let path, id;
+    if (!this.props.params.collection) {
+      path = 'categories';
+      id = this.props.params.categoryId;
+    } else {
+      path = 'collections';
+      id = this.props.params.collectionId;
+    }
+
+    this.handlePath(path, id, this.props.params);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    console.log(nextProps.params);
+    if (!nextProps.params.collection) {
+      console.log(1);
+      if (this.state.categoryId !== nextProps.params.categoryId || this.state.collection !== nextProps.params.collection) {
+        console.log(2);
+        this.handlePath('categories', nextProps.params.categoryId, nextProps.params);
+      }
+    } else {
+      console.log(3);
+      if (this.state.collectionId !== nextProps.params.collectionId) {
+        console.log(4);
+        this.handlePath('collections', nextProps.params.collectionId, nextProps.params);
+      }
+    }
+  }
+
+  handlePath(path, id, params) {
+    return axios.get(`/api/${path}/${id}`)
       .then((res) => {
         this.setState({
-          products: res.data
+          products: res.data,
+          category: params.category,
+          categoryId: params.categoryId,
+          collection: params.collection,
+          collectionId: params.collectionId
         });
       })
       .catch((err) => {
@@ -31,92 +77,45 @@ export default class Products extends React.Component {
       });
   }
 
-  // Get all products when a new sidenav caategory is clicked
-  componentWillReceiveProps(nextProps) {
-    if (this.props.params.id !== nextProps.params.id) {
-      axios.get(`/api/categories/${nextProps.params.id}`)
-        .then((res) => {
-          this.setState({
-            products: res.data,
-          });
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    }
-  }
-
-
-  // ***************************  RENDER  ********************************
-  // *********************************************************************
+  // ********************  RENDER  ********************
+  // **************************************************
   render() {
-    const edit = (
-      <Tooltip id="tooltip"><strong>Edit</strong></Tooltip>
-    );
-
     const availableProducts = () => {
       if (this.state.products.length === 0) {
-        return (<div>
-          <h4 className="text-center"><em>No products to display!</em></h4>
-        </div>);
+        return <div>
+          <h4 className="text-center">
+            <em>No products to display!</em>
+          </h4>
+        </div>;
       } else {
-        if (this.Auth.loggedIn()) {
-          return this.state.products.map((p) => {
-            return <div className="col-sm-4" key={p.product_id}>
-              <div className="thumbnail">
-                <div className="row btn-wrap">
-                  <div className="col-sm-12 text-right">
-                    <OverlayTrigger placement="top" overlay={edit}>
-                      <Link to={`/productupdate/${p.product_id}`}>
-                        <Button bsStyle="success">
-                          <span className="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                        </Button>
-                      </Link>
-                    </OverlayTrigger>
-                  </div>
-                </div>
+        return this.state.products.map((p) => {
+          return <div key={p.product_id}>
+            <Product
+              edit={this.state.auth}
+              productId={p.product_id}
+              productImagePublicId={p.product_image_public_id}
+              productName={p.product_name}
+              productDescription={p.product_description}
+              productPrice={p.product_price}
+            />
+          </div>
+        });
+      }
+    }
 
-                <Image cloudName={cloudName} publicId={p.product_image_public_id} width="300" height="200" crop="pad" />
-
-                <div className="caption">
-                  <h4>{p.product_name}</h4>
-                  <p>{p.product_description}</p>
-                  <p>{p.product_price}</p>
-                  <Link to={`/productdetails/${p.product_id}`}>
-                    <Button bsStyle="primary">Buy Now</Button>
-                  </Link>
-                </div>
-              </div>
-            </div>
-          });
-        } else {
-          return this.state.products.map((p) => {
-            return <div className="col-sm-4" key={p.product_id}>
-              <div className="thumbnail">
-
-                <Image className="img-padd" cloudName={cloudName} publicId={p.product_image_public_id} width="300" height="200" crop="pad" />
-
-                <div className="caption">
-                  <h4>{p.product_name}</h4>
-                  <p>{p.product_description}</p>
-                  <p>{p.product_price}</p>
-                  <Link to={`/productdetails/${p.product_id}`}>
-                    <Button bsStyle="primary">Buy Now</Button>
-                  </Link>
-                </div>
-              </div>
-            </div>
-          });
-        }
+    const displayHeader = () => {
+      if (!this.props.params.collection) {
+        return <Header category={this.props.params.category}/>
+      } else {
+        return <Header category={this.props.params.category} collection={this.props.params.collection}/>
       }
     }
 
     return (
       <div>
-        <Header category={this.props.params.category}/>
+        {displayHeader()}
 
         {availableProducts()}
-
       </div>
     );
   }

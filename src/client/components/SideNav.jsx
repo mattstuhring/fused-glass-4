@@ -204,9 +204,9 @@ export default class SideNav extends React.Component {
           <Modal.Footer>
             <Button
               onClick={() => this.handleCollectionDelete(
-              this.state.delete.categoryId,
-              this.state.delete.collectionId
-            )}>Yes</Button>
+                this.state.delete.categoryId,
+                this.state.delete.collectionId
+              )}>Yes</Button>
             <Button onClick={this.close}>No</Button>
           </Modal.Footer>
         </Modal>
@@ -220,7 +220,7 @@ export default class SideNav extends React.Component {
           {/* DECORATIVE */}
           <div className="row">
             <div className="col-sm-12">
-              <Link to={`/products/${1}/Decorative`} onClick={() => this.handleCollections(1, 'decorative')}>
+              <Link to={`/products/Decorative/${1}`} onClick={() => this.handleCollections(1, 'decorative')}>
                 Decorative
               </Link>
               <Panel expanded={this.state.open1} onToggle={()=>{}}>
@@ -234,7 +234,7 @@ export default class SideNav extends React.Component {
                         return <ListGroupItem key={c.collection_id}>
                             <div className="row">
                               <div className="col-sm-8">
-                                <Link to={`/collections/Decorative/${c.collection_id}/${c.collection_name}`}>
+                                <Link to={`/products/Decorative/${1}/${c.collection_name}/${c.collection_id}`}>
                                   {c.collection_name}
                                 </Link>
                               </div>
@@ -255,7 +255,7 @@ export default class SideNav extends React.Component {
           {/* HOUSEWARE */}
           <div className="row">
             <div className="col-sm-12">
-              <Link to={`/products/${2}/Houseware`} onClick={() => this.handleCollections(2, 'houseware')}>
+              <Link to={`/products/Houseware/${2}`} onClick={() => this.handleCollections(2, 'houseware')}>
                 Houseware
               </Link>
               <Panel expanded={this.state.open2} onToggle={()=>{}}>
@@ -270,7 +270,7 @@ export default class SideNav extends React.Component {
                         return <ListGroupItem key={c.collection_id}>
                             <div className="row">
                               <div className="col-sm-8">
-                                <Link to={`/collections/Houseware/${c.collection_id}/${c.collection_name}`}>
+                                <Link to={`/products/Houseware/${2}/${c.collection_name}/${c.collection_id}`}>
                                   {c.collection_name}
                                 </Link>
                               </div>
@@ -291,7 +291,7 @@ export default class SideNav extends React.Component {
           {/* JEWELRY */}
           <div className="row">
             <div className="col-sm-12">
-              <Link to={`/products/${3}/Jewelry`}  onClick={() => this.handleCollections(3, 'jewelry')}>
+              <Link to={`/products/Jewelry/${3}`}  onClick={() => this.handleCollections(3, 'jewelry')}>
                 Jewelry
               </Link>
               <Panel expanded={this.state.open3} onToggle={()=>{}}>
@@ -305,7 +305,7 @@ export default class SideNav extends React.Component {
                         return <ListGroupItem key={c.collection_id}>
                             <div className="row">
                               <div className="col-sm-8">
-                                <Link to={`/collections/Jewelry/${c.collection_id}/${c.collection_name}`}>
+                                <Link to={`/Products/Jewelry/${3}/${c.collection_name}/${c.collection_id}`}>
                                   {c.collection_name}
                                 </Link>
                               </div>
@@ -326,7 +326,7 @@ export default class SideNav extends React.Component {
           {/* GARDEN */}
           <div className="row">
             <div className="col-sm-12">
-              <Link to={`/products/${4}/Garden`} onClick={() => this.handleCollections(4, 'garden')}>
+              <Link to={`/products/Garden/${4}`} onClick={() => this.handleCollections(4, 'garden')}>
                 Garden
               </Link>
               <Panel expanded={this.state.open4} onToggle={()=>{}}>
@@ -340,7 +340,7 @@ export default class SideNav extends React.Component {
                         return <ListGroupItem key={c.collection_id}>
                             <div className="row">
                               <div className="col-sm-8">
-                                <Link to={`/collections/Garden/${c.collection_id}/${c.collection_name}`}>
+                                <Link to={`/collections/Garden/${4}/${c.collection_name}/${c.collection_id}`}>
                                   {c.collection_name}
                                 </Link>
                               </div>
