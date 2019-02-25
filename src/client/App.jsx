@@ -11,8 +11,6 @@ import './styles/App.scss';
 
 import About from 'About';
 import Cart from 'Cart';
-import Categories from 'Categories';
-import Collections from 'Collections';
 import Contact from 'Contact';
 import Gallery from 'Gallery';
 import Home from 'Home';
@@ -35,11 +33,7 @@ ReactDOM.render(
       <Route path="/productupdate/:id" component={ProductUpdate}/>
       <Route path="/cart(/:id)" component={Cart}/>
       <Route path="/login(/:action)" component={Login}/>
-
       <Route path="/products/:category/:categoryId(/:collection)(/:collectionId)" component={Products}/>
-
-      <Route path="/collections/:category/:id/:collection" component={Products}/>
-
       <Route path="/productdetails/:id" component={ProductDetails} />
     </Route>
   </Router>,

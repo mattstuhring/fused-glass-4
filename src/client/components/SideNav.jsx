@@ -79,19 +79,19 @@ export default class SideNav extends React.Component {
         switch (categoryId) {
           case 1:
             this.setState({ decoratives: res.data, open1: true, open2: false, open3: false, open4: false });
-            browserHistory.push(`/products/${1}/Decorative`);
+            browserHistory.push(`/products/Decorative/${1}`);
             break;
           case 2:
             this.setState({ housewares: res.data, open2: true, open1: false, open3: false, open4: false });
-            browserHistory.push(`/products/${2}/Houseware`);
+            browserHistory.push(`/products/Houseware/${2}`);
             break;
           case 3:
             this.setState({jewelrys: res.data, open3: true, open2: false, open1: false, open4: false });
-            browserHistory.push(`/products/${3}/Jewelry`);
+            browserHistory.push(`/products/Jewelry/${3}`);
             break;
           case 4:
             this.setState({ gardens: res.data, open4: true, open2: false, open3: false, open1: false });
-            browserHistory.push(`/products/${4}/Garden`);
+            browserHistory.push(`/products/Garden/${4}`);
             break;
         }
       })
@@ -177,7 +177,7 @@ export default class SideNav extends React.Component {
       if (this.Auth.loggedIn()) {
         return <div className="col-sm-4 text-right">
           <Link
-            to={`/products/${1}/Decorative`}
+            to={`/products/Decorative/${1}`}
             onClick={() => this.open(catId, collId)}
           >
             <span className="glyphicon glyphicon-remove" aria-hidden="true"></span>

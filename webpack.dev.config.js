@@ -19,8 +19,6 @@ module.exports = {
       About:              path.resolve(__dirname, 'src/client/components/About'),
       AuthService:        path.resolve(__dirname, 'src/client/components/services/AuthService'),
       Cart:               path.resolve(__dirname, 'src/client/components/Cart.jsx'),
-      Categories:         path.resolve(__dirname, 'src/client/components/products/product/Categories.jsx'),
-      Collections:        path.resolve(__dirname, 'src/client/components/products/product/Collections.jsx'),
       Contact:            path.resolve(__dirname, 'src/client/components/Contact.jsx'),
       Gallery:            path.resolve(__dirname, 'src/client/components/Gallery.jsx'),
       Header:             path.resolve(__dirname, 'src/client/components/Header.jsx'),
