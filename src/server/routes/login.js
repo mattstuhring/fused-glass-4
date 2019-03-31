@@ -31,15 +31,18 @@ router.post('/login', (req, res, next) => {
       return bcrypt.compare(req.body.password, user.userHashedPassword);
     })
     .then(() => {
-      const expiry = new Date(Date.now() + 1000 * 60 * 60 * 24 * 30);
-
       const token = jwt.sign(
-        { userId: user.userId, email: user.userEmail },
+        {
+          userId: user.userId,
+          email: user.userEmail
+        },
         process.env.JWT_SECRET,
-        { expiresIn: '30 days' }
+        {
+          expiresIn: 86400 // expires in 24 hours
+        }
       );
 
-      res.send(token);
+      res.status(200).send({ auth: true, token: token });
     })
     .catch(bcrypt.MISMATCH_ERROR, () => {
       console.log(401, 'Invalid username or password.');

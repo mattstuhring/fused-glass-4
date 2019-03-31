@@ -3,7 +3,7 @@ import { Panel, FormGroup, ControlLabel, FormControl, Button } from 'react-boots
 import axios from 'axios';
 import decode from 'jwt-decode';
 import { browserHistory } from 'react-router';
-import AuthService from 'AuthService';
+import AuthService from './services/AuthService';
 
 export default class Login extends React.Component {
   constructor(props) {

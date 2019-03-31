@@ -18,19 +18,8 @@ export default class Product extends React.Component {
       if (!this.props.edit) {
         return <div className="col-sm-4">
           <div className="thumbnail">
-            <div className="row btn-wrap">
-              <div className="col-sm-12 text-right">
-                <OverlayTrigger placement="top" overlay={edit}>
-                  <Link to={`/productupdate/${this.props.productId}`}>
-                    <Button bsStyle="success">
-                      <span className="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                    </Button>
-                  </Link>
-                </OverlayTrigger>
-              </div>
-            </div>
 
-            <Image cloudName={cloudName} publicId={this.props.productImagePublicId} width="300" height="200" crop="pad" />
+            <Image className="img-padd" cloudName={cloudName} publicId={this.props.productImagePublicId} width="300" height="200" crop="pad" />
 
             <div className="caption">
               <h4>{this.props.productName}</h4>
@@ -45,8 +34,19 @@ export default class Product extends React.Component {
       } else {
         return <div className="col-sm-4">
           <div className="thumbnail">
+            <div className="row btn-wrap">
+              <div className="col-sm-12 text-right">
+                <OverlayTrigger placement="top" overlay={edit}>
+                  <Link to={`/productupdate/${this.props.productId}`}>
+                    <Button bsStyle="success">
+                      <span className="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                    </Button>
+                  </Link>
+                </OverlayTrigger>
+              </div>
+            </div>
 
-            <Image className="img-padd" cloudName={cloudName} publicId={this.props.productImagePublicId} width="300" height="200" crop="pad" />
+            <Image cloudName={cloudName} publicId={this.props.productImagePublicId} width="300" height="200" crop="pad" />
 
             <div className="caption">
               <h4>{this.props.productName}</h4>
