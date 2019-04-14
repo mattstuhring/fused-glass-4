@@ -11,9 +11,9 @@ if (process.env.NODE_ENV === 'production') {
 // PACKAGES . . .
 const express = require('express');
 const path = require('path');
+const cors = require('cors');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
-const cookieSession = require('cookie-session');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 
 const PORT = process.env.PORT || 3000;
@@ -34,6 +34,8 @@ const executePayment = require('./routes/executePayment');
 
 // EXPRESS APP
 const app = express();
+
+app.use(cors());
 
 // HTTP headers security
 app.disable('x-powered-by');
@@ -99,5 +101,7 @@ app.use(function(err, req, res, next) {
 
 // START SERVER!!!
 app.listen(PORT, function() {
-  console.log('Served fresh daily on PORT: ', PORT);
+  console.log('**************************************');
+  console.log('App served fresh daily on PORT: ', PORT);
+  console.log('**************************************');
 });
