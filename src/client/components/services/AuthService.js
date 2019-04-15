@@ -18,23 +18,23 @@ export default class AuthService {
 
     getToken() {
       // Retrieves the user token from localStorage
-      return localStorage.getItem('id_token');
+      return localStorage.getItem('JWT_TOKEN');
     }
 
-    setToken(idToken) {
+    setToken(token) {
       // Saves user token to localStorage
-      return localStorage.setItem('id_token', idToken);
+      return localStorage.setItem('JWT_TOKEN', token);
     }
 
     loggedIn() {
       // Checks if there is a saved token and it's still valid
-      const token = localStorage.getItem('id_token'); // Getting token from localstorage
+      const token = localStorage.getItem('JWT_TOKEN'); // Getting token from localstorage
       return token && !this.isTokenExpired(token); // handwaiving here
     }
 
     logout() {
       // Clear token from localStorage
-      return localStorage.removeItem('id_token');
+      return localStorage.removeItem('JWT_TOKEN');
     }
 
     isTokenExpired(token) {

@@ -6,7 +6,7 @@ exports.seed = function(knex) {
     {
       user_id: 1,
       user_email: 'test@test.com',
-      user_hashed_password: '$2a$10$e9wOPCUIDk3LT9xw.Heii.zvP9PhV0CkES.kllKLw6x7rlkNAU7Da',
+      user_hashed_password: '$2b$12$.S89dCwuoisY5koOawvn.Og1vLxy7xHgOHgjo2LuA3KdEJVPDB6p.',
       user_access: 'admin',
       user_reset_password_token: '',
       created_at: new Date('2018-04-15 12:12:16 UTC'),

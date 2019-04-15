@@ -38,7 +38,9 @@ export default class Login extends React.Component {
 
     axios.post('/api/login', user)
       .then((res) => {
-        this.Auth.setToken(res.data);
+        console.log('res: ', res);
+
+        this.Auth.setToken(res.data.token);
 
         this.setState({
           email: '',

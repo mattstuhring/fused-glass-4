@@ -45,23 +45,27 @@ passport.use(new LocalStrategy({
     .select('*')
     .where('user_email', email)
     .first()
-    .then((exist) => {
+    .then((row) => {
       // If user doesn't exist handle it
-      if (!exist) {
+      if (!row) {
+        console.log('User does not exist!');
         return done(null, false);
       } else {
-        user = exist;
+        user = row;
       }
 
+      console.log('User exists! Compare password . . .')
       // Check user's password
-      return bcrypt.compare(password, exist.user_hashed_password);
+      return bcrypt.compare(password, row.user_hashed_password);
     })
     .then((isMatch) => {
       // If password doesn't match handle it
       if (!isMatch) {
+        console.log('Password does not match!');
         return done(null, false);
       }
 
+      console.log('Login successful');
       // Otherwise return the user
       done(null, user);
     })
